@@ -7,7 +7,7 @@ const TaskReducer = (state, action) => {
         case TAREAS:
             return {
                 ...state,
-                tareasproyecto: action.payload
+                tareas: action.payload
             }
         default:
             return state;

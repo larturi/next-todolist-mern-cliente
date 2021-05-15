@@ -17,15 +17,14 @@ const TaskState = props => {
     const [state, dispatch] = useReducer(TaskReducer, initialState);
 
     // Obtener las tareas
-    const obtenerTareas = async () => {
+    const obtenerTareas = async (completed) => {
 
         try {
-            const resultado = await clienteAxios.get('/api/tasks');
-            console.log(resultado);
-            // dispatch({
-            //     type: TAREAS,
-            //     payload: resultado.data.tareas
-            // });
+            const resultado = await clienteAxios.get('/api/tasks', { params: {completed} });
+            dispatch({
+                type: TAREAS,
+                payload: resultado.data.tareas
+            });
         } catch (error) {
             console.log(error);
         }

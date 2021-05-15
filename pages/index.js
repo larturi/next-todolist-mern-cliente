@@ -11,8 +11,12 @@ const Home = () => {
     <>
       <TaskState>
         <Layout>
-          <h2 className="mt-4">Tareas Pendientes</h2>
-          <ListadoTasks />
+          <div className="mt-4 ml-4 mr-4">
+            <h4>Pendientes</h4>
+            <ListadoTasks 
+              completed={false}
+            />
+          </div>
         </Layout>
       </TaskState>
     </>

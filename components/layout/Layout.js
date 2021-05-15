@@ -9,8 +9,8 @@ const Layout = props => {
             <Global 
                 styles={css`
                     :root {
-                        --gris: #232222;
-                        --gris2: #6F6F6F;
+                        --gris: #202020;
+                        --gris2: #282828;
                         --gris3: #e1e1e1;
                         --naranja: #DA552F;
                         --white: #fff
@@ -26,7 +26,6 @@ const Layout = props => {
                         font-size: 1.6rem; 
                         line-height: 1.5;
                         font-family: 'PT Sans', sans-serif;
-                        padding: 2rem 8rem;
                         background: var(--gris);
                     }
                     h1, h2, h3 {
@@ -39,7 +38,7 @@ const Layout = props => {
                         font-weight: 700;
                         color: var(--white);
                     }
-                    h3 {
+                    h3, h4 {
                         font-family: 'PT Sans', sans-serif;
                         color: var(--white);
                     }
@@ -57,6 +56,12 @@ const Layout = props => {
                     }
                     .mt-4 {
                         margin-top: 4rem;
+                    }
+                    .ml-4 {
+                        margin-left: 4rem;
+                    }
+                    .mr-4 {
+                        margin-right: 4rem;
                     }
                 `}
             />

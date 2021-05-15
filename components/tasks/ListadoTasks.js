@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import taskContext from '../../context/tasks/taskContext';
@@ -9,18 +9,15 @@ const TareasContainer = styled.ul`
     color: var(--gris);
 `;
 
-const ListadoTasks = () => {
+const ListadoTasks = ({ completed }) => {
     
     const tasksContext = useContext(taskContext);
-    const { obtenerTareas } = tasksContext;
+    const { tareas, obtenerTareas } = tasksContext;
 
-    obtenerTareas();
+    useEffect(() => {
+        obtenerTareas(completed);
+    }, [completed]);
 
-    const tareas = [
-        { id: 1, name: 'Compra agua', completed: false },
-        { id: 2, name: 'Compra pan', completed: false },
-        { id: 3, name: 'Compra helado', completed: false },
-    ];
     return (
         <>
             <TareasContainer>

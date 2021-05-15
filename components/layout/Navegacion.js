@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import Boton from '../ui/Boton';
 
 const Nav = styled.nav`
     padding-left: 2rem;
@@ -20,10 +22,25 @@ const Navegacion = () => {
     return ( 
         <Nav>
             <Link href="/">
-                <a>Pendientes</a>
+                <a>
+                    <span css={css`
+                        color: #fff;
+                    `}>Pendientes</span>
+                </a>
             </Link>
             <Link href="/completadas">
-                <a>Completadas</a>
+                <a>
+                    <span css={css`
+                        color: #fff;
+                    `}>Completadas</span>
+                </a>
+            </Link>
+            <Link href="">
+                <Boton bgColor="true">
+                    <span css={css`
+                        color: #fff;
+                    `}>+ Add task</span>
+                </Boton>
             </Link>
         </Nav>
      );
