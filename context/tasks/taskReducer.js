@@ -1,6 +1,7 @@
 import { 
     TAREAS,
-    ACTUALIZAR_TAREA
+    ACTUALIZAR_TAREA,
+    AGREGAR_TAREA
 } from '../../types';
 
 const TaskReducer = (state, action) => {
@@ -23,6 +24,14 @@ const TaskReducer = (state, action) => {
                 tareasCompletadas: state.tareas.filter(tarea => tarea.completed === true),
                 countPendientes: state.tareas.filter(tarea => tarea.completed === false).length,
                 countCompletadas: state.tareas.filter(tarea => tarea.completed === true).length
+            }
+
+        case AGREGAR_TAREA:
+            return {
+                ...state,
+                tareas: [...state.tareas, action.payload],
+                tareasPendientes: [...state.tareasPendientes, action.payload],
+                countPendientes: action.payload.pendientesCount + 1
             }
 
         default:

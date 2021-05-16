@@ -1,4 +1,3 @@
 export const TAREAS = 'TAREAS';
 export const AGREGAR_TAREA = 'AGREGAR_TAREA';
-export const ELIMINAR_TAREA = 'ELIMINAR_TAREA';
 export const ACTUALIZAR_TAREA = 'ACTUALIZAR_TAREA';

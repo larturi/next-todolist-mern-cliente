@@ -4,7 +4,8 @@ import TaskReducer from './taskReducer';
 
 import { 
     TAREAS,
-    ACTUALIZAR_TAREA
+    ACTUALIZAR_TAREA,
+    AGREGAR_TAREA
 } from '../../types';
 
 import clienteAxios from '../../config/axios';
@@ -59,6 +60,20 @@ const TaskState = props => {
         }
     };
 
+    const agregarTarea = async (tarea) => {
+
+        try {
+            const resultado = await clienteAxios.post('/api/tasks', { name: tarea, completed: false });
+            console.log(resultado);
+            dispatch({
+                type: AGREGAR_TAREA,
+                payload: resultado.data
+            });
+        } catch (error) {
+            console.log('Hubo un error al agregar la tarea');
+        }
+    };
+
     return (
         <TaskContext.Provider
             value={{
@@ -67,7 +82,8 @@ const TaskState = props => {
                 tareasCompletadas : state.tareasCompletadas,
                 countPendientes: state.countPendientes,
                 obtenerTareas,
-                actualizarTarea
+                actualizarTarea,
+                agregarTarea
             }}
         >
             {props.children}
