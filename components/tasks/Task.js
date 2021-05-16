@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+
+import taskContext from '../../context/tasks/taskContext';
 
 const TareaContainer = styled.li`
     border-top: solid 0.3px #4f4f4f;
@@ -21,9 +23,27 @@ const TareaContainer = styled.li`
 
 
 const Task = ({ tarea }) => {
+
+    const tasksContext = useContext(taskContext);
+    const { actualizarTarea } = tasksContext;
+
+    const handleCambiarEstado = (tarea) => {
+
+        if (tarea.completed) {
+            tarea.completed = false;
+        } else {
+            tarea.completed = true;
+        }
+
+        actualizarTarea(tarea);
+    };
+
     return (
         <TareaContainer>
-            <input type="radio" />
+            <input 
+                type="radio"
+                onClick={() => handleCambiarEstado(tarea) }  
+            />
             <span css={css`
                 margin-left: 1rem;
             `}>{ tarea.name }</span>

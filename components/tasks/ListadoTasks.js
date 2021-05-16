@@ -12,7 +12,11 @@ const TareasContainer = styled.ul`
 const ListadoTasks = ({ completed }) => {
     
     const tasksContext = useContext(taskContext);
-    const { tareas, obtenerTareas } = tasksContext;
+    const { 
+        tareasPendientes, 
+        tareasCompletadas, 
+        obtenerTareas,
+    } = tasksContext;
 
     useEffect(() => {
         obtenerTareas(completed);
@@ -21,18 +25,35 @@ const ListadoTasks = ({ completed }) => {
     return (
         <>
             <TareasContainer>
+
                 {
-                    (tareas.length == 0) ? (
-                        <li className="tarea">No hay tareas</li>
+
+                    (completed) ? (
+                        
+                        (tareasCompletadas.length > 0) ? (
+                            tareasCompletadas.map(tarea => (
+                                <Task
+                                tarea={tarea}
+                                key={tarea.id}
+                                />
+                            ))
+                        ) : <li className="tarea text-white">No hay tareas completadas</li>
+                        
                     ) : (
-                        tareas.map(tarea => (
-                            <Task
-                              tarea={tarea}
-                              key={tarea.id}
-                            />
-                        ))
+
+                        (tareasPendientes.length > 0) ? (
+                            tareasPendientes.map(tarea => (
+                                <Task
+                                tarea={tarea}
+                                key={tarea.id}
+                                />
+                            ))
+                        ) : <li className="tarea text-white">No hay tareas pendientes</li>
+
                     )
+
                 }
+                    
             </TareasContainer>
         </>
     )

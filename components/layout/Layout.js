@@ -63,6 +63,9 @@ const Layout = props => {
                     .mr-4 {
                         margin-right: 4rem;
                     }
+                    .text-white {
+                        color: var(--white);
+                    }
                 `}
             />
 
