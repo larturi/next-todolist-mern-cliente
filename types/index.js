@@ -2,3 +2,5 @@ export const TAREAS = 'TAREAS';
 export const AGREGAR_TAREA = 'AGREGAR_TAREA';
 export const ACTUALIZAR_TAREA = 'ACTUALIZAR_TAREA';
 export const BORRAR_TAREA = 'BORRAR_TAREA';
+export const SELECCIONAR_TAREA = 'SELECCIONAR_TAREA';
+export const EDITAR_TAREA = 'EDITAR_TAREA';

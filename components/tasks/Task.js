@@ -22,6 +22,16 @@ const TareaContainer = styled.li`
 `;
 
 const BtnBorrar = styled.button`
+    background: #b1003f;
+    color: #fff;
+    margin-left: 1rem;
+    border: 0;
+    font-size: 12px;
+    padding: 4px 8px;
+    text-transform: uppercase;
+`;
+
+const BtnEditar = styled.button`
     background: #5d5d5d;
     color: #fff;
     margin-left: 1rem;
@@ -31,10 +41,10 @@ const BtnBorrar = styled.button`
     text-transform: uppercase;
 `;
 
-const Task = ({ tarea }) => {
+const Task = ({ tarea, padre }) => {
 
     const tasksContext = useContext(taskContext);
-    const { actualizarTarea, borrarTarea } = tasksContext;
+    const { actualizarTarea, borrarTarea, seleccionarTarea } = tasksContext;
 
     const handleCambiarEstado = (tarea) => {
 
@@ -49,6 +59,10 @@ const Task = ({ tarea }) => {
 
     const handleBorrarTarea = (tarea) => {
         borrarTarea(tarea);
+    };
+
+    const handleSeleccionarTarea = (tarea) => {
+        seleccionarTarea(tarea);
     };
 
     return (
@@ -74,6 +88,22 @@ const Task = ({ tarea }) => {
                 >
                     Borrar
                 </BtnBorrar>
+
+               {
+                   (padre === 'index') &&
+
+                    <BtnEditar css={css`
+                        float: right;
+                        margin-top: 4px;
+                        cursor: pointer;
+                        `}
+                            onClick={ () => handleSeleccionarTarea(tarea) }  
+                        >
+                            Editar
+                        </BtnEditar>
+               }
+
+                
 
             </TareaContainer>
 

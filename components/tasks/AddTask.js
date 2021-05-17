@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -37,18 +37,23 @@ const Button = styled.button`
     }
 `;
 
-
 const AddTask = () => {
 
     const tasksContext = useContext(taskContext);
-
-    const { 
-        agregarTarea
-    } = tasksContext;
+    const { tareaSeleccionada, agregarTarea, editarTarea } = tasksContext;
 
     const [ tarea, setTarea ] = useState({
         nombre: ''
     });
+
+    useEffect(() => {
+        if (tareaSeleccionada) {
+            setTarea({
+                ...tarea,
+                nombre: tareaSeleccionada.name
+            });
+        }
+    }, [tareaSeleccionada])
 
     const handleOnChange = (e) => {
         setTarea({
@@ -64,7 +69,13 @@ const AddTask = () => {
             return;
         };
 
-        agregarTarea(tarea.nombre);
+        if (tareaSeleccionada) {
+            tareaSeleccionada.name = tarea.nombre;
+            editarTarea(tareaSeleccionada);
+        } else {
+            agregarTarea(tarea.nombre);
+        }
+
         setTarea({ nombre: ''});
     }
 
@@ -97,7 +108,9 @@ const AddTask = () => {
                 <Button
                     type="submit" 
                 >
-                    Añadir Tarea
+                    {
+                        tareaSeleccionada ? 'Editar Tarea' : 'Añadir Tarea'
+                    }
                 </Button>
 
             </form>

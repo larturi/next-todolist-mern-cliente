@@ -6,7 +6,9 @@ import {
     TAREAS,
     ACTUALIZAR_TAREA,
     AGREGAR_TAREA,
-    BORRAR_TAREA
+    BORRAR_TAREA,
+    SELECCIONAR_TAREA,
+    EDITAR_TAREA
 } from '../../types';
 
 import clienteAxios from '../../config/axios';
@@ -15,7 +17,8 @@ const TaskState = props => {
     const initialState = {
         tareas: [],
         tareasPendientes: [],
-        tareasCompletadas: []
+        tareasCompletadas: [],
+        tareaSeleccionada: null
     }
 
     // Crear dispatch y state
@@ -44,12 +47,30 @@ const TaskState = props => {
     };
 
     const actualizarTarea = async (tarea) => {
+        // Hace el cambio de estado completa / incompleta
         try {
 
             const resultado = await clienteAxios.put(`/api/tasks/${tarea.id}`, { completed: tarea.completed });
 
             dispatch({
                 type: ACTUALIZAR_TAREA,
+                payload: { 
+                    tarea: resultado.data
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const editarTarea = async (tarea) => {
+        // Edita el nombre de la tarea
+        try {
+
+            const resultado = await clienteAxios.put(`/api/tasks/${tarea.id}`, { name: tarea.name });
+
+            dispatch({
+                type: EDITAR_TAREA,
                 payload: { 
                     tarea: resultado.data
                 }
@@ -85,16 +106,26 @@ const TaskState = props => {
         }
     };
 
+    const seleccionarTarea = (tarea) => {
+        dispatch({
+            type: SELECCIONAR_TAREA,
+            payload: tarea
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
                 tareas : state.tareas,
                 tareasPendientes : state.tareasPendientes,
                 tareasCompletadas : state.tareasCompletadas,
+                tareaSeleccionada: state.tareaSeleccionada,
                 obtenerTareas,
                 actualizarTarea,
+                editarTarea,
                 agregarTarea,
-                borrarTarea
+                borrarTarea,
+                seleccionarTarea
             }}
         >
             {props.children}

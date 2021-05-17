@@ -9,7 +9,7 @@ const TareasContainer = styled.ul`
     color: var(--gris);
 `;
 
-const ListadoTasks = ({ completed }) => {
+const ListadoTasks = ({ completed, padre }) => {
     
     const tasksContext = useContext(taskContext);
     const { 
@@ -33,8 +33,9 @@ const ListadoTasks = ({ completed }) => {
                         (tareasCompletadas.length > 0) ? (
                             tareasCompletadas.map(tarea => (
                                 <Task
-                                tarea={tarea}
-                                key={tarea.id}
+                                    tarea={tarea}
+                                    key={tarea.id}
+                                    padre={padre}
                                 />
                             ))
                         ) : <li className="tarea text-white">No hay tareas completadas</li>
@@ -44,8 +45,9 @@ const ListadoTasks = ({ completed }) => {
                         (tareasPendientes.length > 0) ? (
                             tareasPendientes.map(tarea => (
                                 <Task
-                                tarea={tarea}
-                                key={tarea.id}
+                                    tarea={tarea}
+                                    key={tarea.id}
+                                    padre={padre}
                                 />
                             ))
                         ) : <li className="tarea text-white">No hay tareas pendientes</li>
