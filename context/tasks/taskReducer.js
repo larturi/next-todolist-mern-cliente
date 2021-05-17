@@ -1,7 +1,8 @@
 import { 
     TAREAS,
     ACTUALIZAR_TAREA,
-    AGREGAR_TAREA
+    AGREGAR_TAREA,
+    BORRAR_TAREA
 } from '../../types';
 
 const TaskReducer = (state, action) => {
@@ -11,9 +12,7 @@ const TaskReducer = (state, action) => {
                 ...state,
                 tareas: action.payload.tareas,
                 tareasPendientes: action.payload.pendientes,
-                tareasCompletadas: action.payload.completadas,
-                countPendientes: action.payload.pendientesCount,
-                countCompletadas: action.payload.completadasCount
+                tareasCompletadas: action.payload.completadas
             }
 
         case ACTUALIZAR_TAREA:
@@ -21,17 +20,22 @@ const TaskReducer = (state, action) => {
                 ...state,
                 tareas: state.tareas.map(tarea => tarea.id === action.payload.id ? action.payload : tarea),
                 tareasPendientes: state.tareas.filter(tarea => tarea.completed === false),
-                tareasCompletadas: state.tareas.filter(tarea => tarea.completed === true),
-                countPendientes: state.tareas.filter(tarea => tarea.completed === false).length,
-                countCompletadas: state.tareas.filter(tarea => tarea.completed === true).length
+                tareasCompletadas: state.tareas.filter(tarea => tarea.completed === true)
             }
 
         case AGREGAR_TAREA:
             return {
                 ...state,
                 tareas: [...state.tareas, action.payload],
-                tareasPendientes: [...state.tareasPendientes, action.payload],
-                countPendientes: action.payload.pendientesCount + 1
+                tareasPendientes: [...state.tareasPendientes, action.payload]
+            }
+
+        case BORRAR_TAREA:
+            return {
+                ...state,
+                tareas: state.tareas.filter(tarea => tarea.id !== action.payload.id),
+                tareasPendientes: state.tareasPendientes.filter(tarea => tarea.id !== action.payload.id),
+                tareasCompletadas: state.tareasCompletadas.filter(tarea => tarea.id !== action.payload.id)
             }
 
         default:

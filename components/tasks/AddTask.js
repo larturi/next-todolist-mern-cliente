@@ -15,7 +15,7 @@ const Input = styled.input`
     border: none;
     border-radius: 0;
 
-    @media (max-width:768px) {
+    @media (max-width: 865px) {
         width: 100%;
     }
 `;
@@ -32,7 +32,7 @@ const Button = styled.button`
     border: solid 1px #dedede;
     cursor: pointer;
 
-    @media (max-width:768px) {
+    @media (max-width: 865px) {
         width: 100%;
     }
 `;
@@ -69,10 +69,25 @@ const AddTask = () => {
     }
 
     return (
-        <div>
+        <div css={css`
+            text-align: center;
+            width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+
+            @media (max-width: 865px) {
+                display: inline;
+            }
+
+        `}>
             <form onSubmit={handleSubmit}>
 
-                <Input 
+                <Input css={css`
+                    margin-bottom: 5px;
+                    width: 680px;
+                    text-align: left;
+                `}
                     type="text" 
                     placeholder="¿Qué quieres hacer?"
                     name="nombre"

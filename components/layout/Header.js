@@ -6,10 +6,8 @@ import Navegacion from './Navegacion';
 
 const ContenedorHeader = styled.div`
     margin: 0 auto;
-    @media (min-width:768px) {
-        display: flex;
-        justify-content: space-between;
-    }
+    display: flex;
+    justify-content: space-between;
 `;
 
 const Logo = styled.a`
@@ -19,10 +17,6 @@ const Logo = styled.a`
     margin-left: 2rem;
     font-weight: 700;
     text-transform: uppercase;
-
-    @media (max-width:768px) {
-        display: none;
-    }
 `;
 
 const Header = () => {

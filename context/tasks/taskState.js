@@ -5,7 +5,8 @@ import TaskReducer from './taskReducer';
 import { 
     TAREAS,
     ACTUALIZAR_TAREA,
-    AGREGAR_TAREA
+    AGREGAR_TAREA,
+    BORRAR_TAREA
 } from '../../types';
 
 import clienteAxios from '../../config/axios';
@@ -14,9 +15,7 @@ const TaskState = props => {
     const initialState = {
         tareas: [],
         tareasPendientes: [],
-        tareasCompletadas: [],
-        countPendientes: 0,
-        countCompletadas: 0
+        tareasCompletadas: []
     }
 
     // Crear dispatch y state
@@ -40,7 +39,7 @@ const TaskState = props => {
                 }
             });
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -64,13 +63,25 @@ const TaskState = props => {
 
         try {
             const resultado = await clienteAxios.post('/api/tasks', { name: tarea, completed: false });
-            console.log(resultado);
             dispatch({
                 type: AGREGAR_TAREA,
                 payload: resultado.data
             });
         } catch (error) {
-            console.log('Hubo un error al agregar la tarea');
+            console.error('Hubo un error al agregar la tarea');
+        }
+    };
+
+    const borrarTarea = async (tarea) => {
+
+        try {
+            const resultado = await clienteAxios.delete(`/api/tasks/${tarea.id}`);
+            dispatch({
+                type: BORRAR_TAREA,
+                payload: resultado.data
+            });
+        } catch (error) {
+            console.error('Hubo un error al eliminar la tarea');
         }
     };
 
@@ -80,10 +91,10 @@ const TaskState = props => {
                 tareas : state.tareas,
                 tareasPendientes : state.tareasPendientes,
                 tareasCompletadas : state.tareasCompletadas,
-                countPendientes: state.countPendientes,
                 obtenerTareas,
                 actualizarTarea,
-                agregarTarea
+                agregarTarea,
+                borrarTarea
             }}
         >
             {props.children}

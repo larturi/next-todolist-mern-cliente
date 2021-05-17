@@ -1,4 +1,6 @@
 import React from 'react';
+import { css } from '@emotion/react';
+
 import Layout from '../components/layout/Layout';
 import TaskState from '../context/tasks/taskState';
 import ListadoTasks from '../components/tasks/ListadoTasks';
@@ -11,12 +13,19 @@ const Home = () => {
         <Layout>
           <div className="mt-4 ml-4 mr-4">
 
-            <AddTask />
+            <div css={css`
+              width: 800px;
+              margin: 0 auto;
 
-            <h4>Pendientes</h4>
-            <ListadoTasks 
-              completed={false}
-            />
+              @media (max-width: 865px) {
+                width: 100%;
+              }
+            `}>
+                <AddTask />
+                <h4>Pendientes</h4>
+                <ListadoTasks completed={false} />
+            </div>
+
           </div>
         </Layout>
       </TaskState>

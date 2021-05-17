@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import Boton from '../ui/Boton';
 
 const Nav = styled.nav`
     padding-left: 2rem;
@@ -20,11 +19,14 @@ const Nav = styled.nav`
 const Navegacion = () => {
 
     return ( 
-        <Nav>
+        <Nav css={css`
+            margin-right: 3rem;
+        `}>
             <Link href="/">
                 <a>
                     <span css={css`
                         color: #fff;
+                        font-size: 15px;
                     `}>Pendientes</span>
                 </a>
             </Link>
@@ -32,16 +34,11 @@ const Navegacion = () => {
                 <a>
                     <span css={css`
                         color: #fff;
+                        font-size: 15px;
                     `}>Completadas</span>
                 </a>
             </Link>
-            <Link href="">
-                <Boton bgColor="true">
-                    <span css={css`
-                        color: #fff;
-                    `}>+ Add task</span>
-                </Boton>
-            </Link>
+            
         </Nav>
      );
 }
