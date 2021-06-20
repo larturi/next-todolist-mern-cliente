@@ -23,6 +23,7 @@ const Home = () => {
             `}>
                 <AddTask />
                 <h4>Pendientes</h4>
+
                 <ListadoTasks 
                   completed={false} 
                   padre="index"

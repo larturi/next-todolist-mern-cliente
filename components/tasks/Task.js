@@ -11,10 +11,10 @@ const TareaContainer = styled.li`
     padding-bottom: 4px;
     color: #545353;
 
-    &:last-child {
+    /* &:last-child {
        border-bottom: solid 0.3px #4f4f4f;
        padding-bottom: 14px;
-    }
+    } */
 
     span {
         color: var(--gris3);
@@ -103,11 +103,7 @@ const Task = ({ tarea, padre }) => {
                         </BtnEditar>
                }
 
-                
-
             </TareaContainer>
-
-            
         </>
         
     )
