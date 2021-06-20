@@ -5,16 +5,16 @@ import { css } from '@emotion/react';
 import taskContext from '../../context/tasks/taskContext';
 
 const TareaContainer = styled.li`
-    border-top: solid 0.3px #4f4f4f;
+    border-top: solid 1px #4f4f4f;
     margin-bottom: 1rem;
     padding-top: 10px;
     padding-bottom: 4px;
     color: #545353;
 
-    /* &:last-child {
-       border-bottom: solid 0.3px #4f4f4f;
+    &:last-child {
+       border-bottom: solid 1px #4f4f4f;
        padding-bottom: 14px;
-    } */
+    }
 
     span {
         color: var(--gris3);
